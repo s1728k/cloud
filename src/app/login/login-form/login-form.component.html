@@ -1,0 +1,46 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h3>Login</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input type="email" id="email" name="email" class="form-control" [(ngModel)]="myCustomer['email']" required />
+        </div>
+        <p *ngIf="error['email']">{{error['email']}}</p>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+          <input type="password" id="password" name="password" class="form-control" [(ngModel)]="myCustomer['password']" required />
+        </div>
+        <p *ngIf="error['password']">{{error['password']}}</p>
+      </div>
+      <div class="form-group">
+        <a [routerLink]="['/login/email']">Forgot Password</a>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" (click)="login()">Login</button>
+      </div>
+      <div class="checkbox">
+        <label>
+            <input type="checkbox" name="remember" [(ngModel)]="myCustomer['checked']"> Remember Me
+        </label>
+      </div>
+      <hr>
+      <a class="btn btn-default" href="http://localhost:8003/login/google"><i class="fa fa-google-plus"></i> Google</a>
+      <a class="btn btn-default" href="http://localhost:8003/login/facebook"><i class="fa fa-facebook"></i> Facebook</a>
+      <a class="btn btn-default"><i class="fa fa-twitter"></i> Twitter</a>
+      <a class="btn btn-default"><i class="fa fa-youtube"></i> Youtube</a>
+      <a class="btn btn-default" (click)="login()"><i class="fa fa-github"></i> Github</a>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>

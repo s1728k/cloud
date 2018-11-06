@@ -4,5 +4,10 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  userAccess: "",
+  baseUrl: "http://localhost:8003/",
+  webUrl: "http://localhost:8003/",
+  apiUrl: "http://localhost:8003/api/",
+  dbTableDb: "laravelapp",
 };

@@ -1,0 +1,190 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-4">
+			<h3>Manual CRUD Table</h3>
+		</div>
+		<div class="col-md-8">
+			<ul class="pager">
+			  <li><a href="#">Previous</a></li>
+			  <li><a href="#">Next</a></li>
+			  <li><a data-toggle="modal" data-target="#goToPage">Goto Page</a></li>
+			  <li><a data-toggle="modal" data-target="#perPageCount">Showing 100 Records</a></li>
+			  <li><a data-toggle="modal" data-target="#chooseDatabaseTable">Load Table</a></li>
+			  <li><a data-toggle="modal" data-target="#importFromExcel">Import From Excel</a></li>
+			  <li><a data-toggle="modal" data-target="#exportToExcel">Export To Excel</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12 table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFiSURBVGhD7Zk5TgNBEEUnAyJEynoqApBI2S4ACVsEV8DcBMQNSOAuQAa8HyB9jVrqmfbSLaue9JK2q6a+pbGtqS4IgqnYxVt8xbdK6tqaQbMUcY5f+NuImuUMR3GKqWYtqNkGsYPfmGrSgp+4jVnu0At/cIIHuL9gdc0n1Aw+0zVmeUEvesTa6IP0mTRjlnf0oiOsjWbwmTRjlg/0okOsjWbwmTRjllkFWcGLnjoroWqQdfQ+UmclRBAviiDofWQEQe8TQUqIIAkiiBf1g6zixgD30PtInaXe23cNnbkEuUR/fR7eoxNBvCiCTOFCgizNzT6U+B1JEEG8KIKg95ERBL1PBCkhgiSoGkT/AB566qyEqkFmSVGQpXmI3eJaQTsSn+kZs2jx6EVasqhRS4ueK8yi1VtLS9C+Wr1t4SBaXoYe4yhOsLX19OgQ/2h7eoP6Akgt8xehrq17YhODICii6/4AKeYLm3RM7hQAAAAASUVORK5CYII=" (click)="addNewRecord()"></th>
+						<th *ngFor="let field_name of field_names">{{field_name['field_name']}}</th>
+						<th width="25px">CRUD</th>
+					</tr>
+					<tr>
+						<td></td>
+						<td *ngFor="let field_name of field_names">
+              <input type="text" name="{{field_name}}" class="form-control" [(ngModel)]="sParam[field_name]" />
+            </td>
+            <td></td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let row_item of my_table; let i=index">
+              <ng-container *ngIf="editMode[i]">
+                <td>{{i+1}}</td>
+                <td *ngFor="let item of field_names">
+                  <div class="form-group">
+                    <input type="input_types[item['data_type']]" name="{{item['field_name']}}" class="form-control" [(ngModel)]="row_item[item['field_name']]" />
+                  </div>
+                </td>
+                <td width="25px"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADQSURBVGhD7dPBCQIxFIThiBdPtmALHjyojdieIGIllmABFiBYgKATl4ElbNjN5pD3YH4YyJ7Cx5KglFJKKaVKO2EXbPn/clpEfLAvdsNcYvoIzh1mCBF3xdxAhLCSEFYSwkpC1LbF1t2xqqaIA/bG7lgNpiniiEUEL52LaYpYYU8svbwUY+Jh77H+H+GmYkwg2FyMKQQrxZhEsKkY0wg2hnGBYDnMA3ODYDlMOtMINoZxgWA5jCsESzEuEWyHvbAz5hbBNtiiOyqllFJKqRDCD9jOxrvAX5HLAAAAAElFTkSuQmCC" (click)="updateRecord(i);editMode[i]=!editMode[i]"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEjSURBVGhD7Zk9agJRFIVnB1bBbWgR12FrbZAUgq21ja7AXkvLtJaWCWQBWYZ2gSTnwBMuj4fj6H0zYTwffM3lvJ8DU70phBDi4XmF+xKZ+ddM4Q/8LZEZZhvhBe4u+AavKXGWWa5J7XWWZ7qzhqkL5ZRnuqMid5ilyBCuapZnijJ6cJLZAczOHKa+Z0+XMDsqUkEVqULrixzhh/ETxhnObIZr4gxttMgBWjowznBm4Zo4Q1WkCioSZhYV8UBFwsyiIh6oSJhZVMQDFQkzi4p4oCJhZlERD1pf5AvaR7YZjDOc2QzXxBnaaBFPW1NkAbPDv0ipwz0dw+x04QmmLuAhn4ieYC2M4DdMXeQeuSf3rpVnuIXv0D663SL32MA+FEK4UxR/dgb0zufBmgUAAAAASUVORK5CYII=" (click)="deleteRecord(i)"></td>
+              </ng-container>
+              <ng-container *ngIf="!editMode[i]">
+                  <td>1</td>
+                  <td *ngFor="let item of field_names">
+                    {{row_item[item['field_name']]}}
+                  </td>
+                  <td width="25px"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHESURBVGhD7Zk3TsRQFEWnIoe1UJHjRqBgDSwDKGYRVIgkgsixomIdFMQWOLew9PX0bEzl95GPdApbH809sjQaZjotLS3ZMYxdvMNl3ciRUXzA78Q1zAovIruYqojC8DE9eIreeGvYGEVsoze6zHAxithBb+xvrmAIFLGL3sg6XmHjKGIP7bhP3MSv5F6Z69goijhAO0wRSyhWsSpG724j2Bh1Igo20J6TitBbdWP04iHaYYpYxBRF6b49GzpiAVMUFTKiD4/QDssu4hjtMI2dxxRFhYzox7KIOUxRVMiIATxBO+wD/2WErsNGeJ9iFTGLKaEjztAOe0cvQnH2bIiIc7TDvAhdh424QDtMETOYEjriEu2wN/QiFGfPhoi4RjvMi9B1yIhBLIuYxpSwEUN4g3bYK3oRirNns4rQdcgIfY15i3aYIqYwJXSEvoe1w17Qi1CcPdt4hP43rhuh65ARevF7tMMUMYkpWUZMYIoidN+e1d9nE6EnEzJC7KMdprHjmBI6QjyhHfeMY1igJxM6QnghsojRkwkfIcpCpGKyiBBVIZ4hI8RfQsJGiLohoSNEnZDwEWILHyvUz2XhI1paWlI6nR/Odd8N7x8zYgAAAABJRU5ErkJggg=="  (click)="editMode[i]=!editMode[i]"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEjSURBVGhD7Zk9agJRFIVnB1bBbWgR12FrbZAUgq21ja7AXkvLtJaWCWQBWYZ2gSTnwBMuj4fj6H0zYTwffM3lvJ8DU70phBDi4XmF+xKZ+ddM4Q/8LZEZZhvhBe4u+AavKXGWWa5J7XWWZ7qzhqkL5ZRnuqMid5ilyBCuapZnijJ6cJLZAczOHKa+Z0+XMDsqUkEVqULrixzhh/ETxhnObIZr4gxttMgBWjowznBm4Zo4Q1WkCioSZhYV8UBFwsyiIh6oSJhZVMQDFQkzi4p4oCJhZlERD1pf5AvaR7YZjDOc2QzXxBnaaBFPW1NkAbPDv0ipwz0dw+x04QmmLuAhn4ieYC2M4DdMXeQeuSf3rpVnuIXv0D663SL32MA+FEK4UxR/dgb0zufBmgUAAAAASUVORK5CYII=" (click)="deleteRecord(i)"></td>
+              </ng-container>
+            </tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<!-- Modal -->
+<div id="goToPage" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Goto Page</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+        	<input type="number" name="goto" value="1" class="form-control"> of Total 100 Pages
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default">Go</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="perPageCount" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Enter The Number Of Records Per Page</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+        	<input type="number" name="perpage" value="100" class="form-control"> of Total 1000 Records
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default">Save</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="chooseDatabaseTable" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Choose Database Table</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+        	<label for="db_name">Database Name</label>
+    			<select id="db_name" name="db_name" class="form-control" (change)="getTableGroups()" [(ngModel)]="selTable['database_name']">
+    				<option *ngFor="let database of databaseList" value="{{database.name}}">{{database.name}}</option>
+    			</select>
+    		</div>
+        <div class="form-group">
+          <label for="group_name">Group Name</label>  
+          <select id="group_name" name="group_name" class="form-control" [(ngModel)]="selTable['group_name']" 
+          (change)="getTablesInTableGroup()">
+            <option *ngFor="let table_group_name of table_group_names" value="{{table_group_name['name']}}">{{table_group_name['name']}}</option>
+          </select>
+        </div>
+    		<div class="form-group">
+    			<label for="table_name">Table Name</label>
+    			<select id="table_name" name="table_name" class="form-control" [(ngModel)]="selTable['table_name']">
+    				<option *ngFor="let my_table of my_table_list" value="{{my_table.table_name}}">{{my_table.table_name}}</option>
+    			</select>
+    		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"(click)="loadTable()">Load Table</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="importFromExcel" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Upload File</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+        	<input type="file" id="input-file" (change)="fileChange($event)" placeholder="Upload file" accept=".png,.jpg,.jpeg">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default">Upload</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="exportToExcel" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Upload File</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+        	<input type="file" id="input-file" (change)="fileChange($event)" placeholder="Upload file" accept=".png,.jpg,.jpeg">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default">Upload</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+

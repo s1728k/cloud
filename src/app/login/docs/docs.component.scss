@@ -1,0 +1,44 @@
+$primary: indigo;
+$accent: orange;
+$warn: red;
+
+$break-small: 768px;
+@mixin respond-to($media) {
+  // @if $media == handhelds {
+  //   @media only screen and (max-width: $break-small) { @content; }
+  // }
+  // @else if $media == medium-screens {
+  //   @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
+  // }
+  // @else if $media == wide-screens {
+  //   @media only screen and (min-width: $break-large) { @content; }
+  // }
+  @if $media == desktop {
+    @media only screen and (min-width: $break-small) { @content; }
+  }
+  @else if $media == mobile {
+    @media only screen and (max-width: $break-small) { @content; }
+  }
+}
+
+.mobile-only{
+	@include respond-to('desktop'){display:none;}
+}
+.desktop-only{
+	@include respond-to('mobile'){display:none;}
+}
+
+.login{
+	padding:30px;
+	a{
+		@include respond-to(mobile){width:100%;}
+		margin:3px;
+	}
+}
+
+h1{
+  color:orange;
+}
+h5{
+  color:blue;
+}

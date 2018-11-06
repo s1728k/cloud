@@ -7,8 +7,271 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
   <app-root></app-root>
+  <script>
+    var app = {};
+
+    app["admin_menu"] = [
+      {"name":"Create New Admin", "link":"/admin/new-admin", "icon":"glyphicon glyphicon-file", "submenu":[]},
+    ];
+
+    app["menu"] = [
+      {"name":"My Apps", "link":"/my-apps", "icon":"glyphicon glyphicon-log-in", "submenu":[]},
+      // {"name":"Authentication", "link":"/login-solutions", "icon":"glyphicon glyphicon-log-in", "submenu":[]},
+      {"name":"Tables", "link":"/database", "icon":"fa fa-database", "submenu":[]},
+      {"name":"Themes", "link":"/themes", "icon":"glyphicon glyphicon-picture", "submenu":[]},
+      {"name":"Notifications", "link":"/notifications", "icon":"fa fa-bell", "submenu":[]},
+      {"name":"Real Time", "link":"/real-time", "icon":"glyphicon glyphicon-time", "submenu":[]},
+      {"name":"Sunil Kumar T ", "link":"", "icon":"  glyphicon glyphicon-user", "submenu":[]},
+      // {"name":"VBA Obfuscator", "link":"/vba-obfuscator", "icon":"fa fa-cubes", "submenu":[]},
+      // {"name":"Cloud Based License Manage...", "link":"/cblms", "icon":"fa fa-subscript", "submenu":[]},
+      // {"name":"Rent House CMS", "link":"/vba-obfuscator", "icon":"fa fa-qrcode", "submenu":[]},
+      // {"name":"GitHub", "link":"/home", "icon":"fa fa-github", "submenu":[]},
+      // {"name":"LinkedIn", "link":"/contact", "icon":"fa fa-linkedin", "submenu":[]},
+      // {"name":"Twitter", "link":"/contact", "icon":"fa fa-twitter", "submenu":[]},
+    ];
+
+    // app["menu"][0].submenu = [
+    //   {"name":"My OAuth2.0 Client Apps", "link":"/my-client-apps", "icon":"fa fa-tablet", "submenu":[]},
+    //   {"name":"Statistics", "link":"/statistics", "icon":"fa fa-database", "submenu":[]},
+    // ]
+
+    app["menu"][1].submenu = [
+      {"name":"Create New Table", "link":"/create-new-table", "icon":"fa fa-table", "submenu":[]},
+      {"name":"Modify Table", "link":"/modify-table", "icon":"fa fa-columns", "submenu":[]},
+      {"name":"Manual CRUD On Table", "link":"/manual-crud-table", "icon":"fa fa-plus", "submenu":[]},
+      // {"name":"Development CRUD Table", "link":"/dev-crud-table", "icon":"fa fa-plus", "submenu":[]},
+      // {"name":"Public Tables", "link":"/public-tables", "icon":"glyphicon glyphicon-th", "submenu":[]},
+      {"name":"My Tables", "link":"/my-table-list", "icon":"glyphicon glyphicon-th-large", "submenu":[]},
+    ]
+
+    app["menu"][2].submenu = [
+      {"name":"Create New Theme", "link":"/new-theme", "icon":"glyphicon glyphicon-picture", "submenu":[]},
+      {"name":"Modify Theme", "link":"/modify-theme", "icon":"glyphicon glyphicon-picture", "submenu":[]},
+      {"name":"Public Themes", "link":"/public-themes", "icon":"glyphicon glyphicon-picture", "submenu":[]},
+      {"name":"My Themes", "link":"/my-themes", "icon":"glyphicon glyphicon-picture", "submenu":[]},
+      {"name":"Public Files", "link":"/my-files", "icon":"glyphicon glyphicon-duplicate", "submenu":[]},
+      {"name":"MyFiles", "link":"/my-files", "icon":"glyphicon glyphicon-file", "submenu":[]},
+      {"name":"Statistics", "link":"/statistics", "icon":"fa fa-database", "submenu":[]},
+    ]
+
+    app["menu"][3].submenu = [
+      {"name":"New Mail Notification", "link":"/my-chat", "icon":"fa fa-envelope", "submenu":[]},
+      {"name":"Setting", "link":"/group-chat", "icon":"fa fa-comments", "submenu":[]},
+    ]
+
+    app["menu"][4].submenu = [
+      {"name":"MyChat", "link":"/my-chat", "icon":"glyphicon glyphicon-comment", "submenu":[]},
+      {"name":"DiscussionRoom", "link":"/group-chat", "icon":"fa fa-comments", "submenu":[]},
+      {"name":"Push Notifications ", "link":"/email-solutions", "icon":"glyphicon glyphicon-bell", "submenu":[]},
+    ]
+
+    app["menu"][5].submenu = [
+      {"name":"Logout ", "link":"/login", "icon":"  glyphicon glyphicon-log-out", "submenu":[]},
+    ]
+
+    app["data_types"] = [
+      {"name":"bigIncrements"},
+      {"name":"bigInteger"},
+      {"name":"binary"},
+      {"name":"boolean"},
+      {"name":"char"},
+      {"name":"date"},
+      {"name":"dateTime"},
+      {"name":"dateTimeTz"},
+      {"name":"decimal"},
+      {"name":"double"},
+      {"name":"enum"},
+      {"name":"float"},
+      {"name":"increments"},
+      {"name":"integer"},
+      {"name":"ipAddress"},
+      {"name":"json"},
+      {"name":"jsonb"},
+      {"name":"longText"},
+      {"name":"macAddress"},
+      {"name":"mediumIncrements"},
+      {"name":"mediumInteger"},
+      {"name":"mediumText"},
+      {"name":"morphs"},
+      {"name":"nullableMorphs"},
+      {"name":"nullableTimestamps"},
+      {"name":"rememberToken"},
+      {"name":"smallIncrements"},
+      {"name":"smallInteger"},
+      {"name":"softDeletes"},
+      {"name":"string"},
+      {"name":"string"},
+      {"name":"text"},
+      {"name":"time"},
+      {"name":"timeTz"},
+      {"name":"tinyInteger"},
+      {"name":"timestamp"},
+      {"name":"timestampTz"},
+      {"name":"timestamps"},
+      {"name":"timestampsTz"},
+      {"name":"unsignedBigInteger"},
+      {"name":"unsignedInteger"},
+      {"name":"unsignedMediumInteger"},
+      {"name":"unsignedSmallInteger"},
+      {"name":"unsignedTinyInteger"},
+      {"name":"uuid"},
+    ];
+
+    app["input_types"] = {"bigIncrements":"number", "bigInteger":"number", "binary":"number", "boolean":"checkbox", "char":"text", "date":"date", "dateTime":"datetime-local", "dateTimeTz":"datetime-local", "decimal":"number", "double":"number", "enum":"text", "float":"number", "increments":"number", "integer":"number", "ipAddress":"text", "json":"text", "jsonb":"text", "longText":"text", "macAddress":"text", "mediumIncrements":"number", "mediumInteger":"number", "mediumText":"text", "morphs":"text", "nullableMorphs":"text", "nullableTimestamps":"time", "rememberToken":"text", "smallIncrements":"number", "smallInteger":"number", "softDeletes":"text", "string":"text", "string":"text", "text":"text", "time":"time", "timeTz":"time", "tinyInteger":"number", "timestamp":"time", "timestampTz":"time", "timestamps":"time", "timestampsTz":"time", "unsignedBigInteger":"number", "unsignedInteger":"number", "unsignedMediumInteger":"number", "unsignedSmallInteger":"number", "unsignedTinyInteger":"number", "uuid":"number"};
+
+    app['default_values'] = {"number":0, "checkbox":false, "text":"", "date":null, "datetime-local":null, "time":null };
+
+    app["data_type_modifiers"] = [
+      {"name":"after"},
+      {"name":"comment"},
+      {"name":"default"},
+      {"name":"first"},
+      {"name":"nullable"},
+      {"name":"storedAs"},
+      {"name":"unsigned"},
+      {"name":"virtualAs"},
+    ];
+
+    app["my_sql_indexes"] = [
+      {"name":"primary"},
+      {"name":"unique"},
+      {"name":"index"},
+    ];
+
+    app["free_databases"] = [
+      {"name":"laravelapp"},
+      {"name":"mysql_db2"},
+      {"name":"mysql_db3"},
+      {"name":"mysql_db4"},
+      {"name":"mysql_db5"},
+      {"name":"mysql_db6"},
+    ];
+
+    app["my_table_list"] = [
+      {"table_name":"my_table1", "table_description":"table_description", "keywords":['fsdfsdf', 'fdsfafasdf', 'fsdfsafs']},
+      {"table_name":"my_table2", "table_description":"table_description", "keywords":['fsdfsdf', 'fdsfafasdf', 'fsdfsafs']},
+      {"table_name":"my_table3", "table_description":"table_description", "keywords":['fsdfsdf', 'fdsfafasdf', 'fsdfsafs']},
+      {"table_name":"my_table4", "table_description":"table_description", "keywords":['fsdfsdf', 'fdsfafasdf', 'fsdfsafs']},
+      {"table_name":"my_table5", "table_description":"table_description", "keywords":['fsdfsdf', 'fdsfafasdf', 'fsdfsafs']},
+      {"table_name":"my_table6", "table_description":"table_description", "keywords":['fsdfsdf', 'fdsfafasdf', 'fsdfsafs']},
+    ];
+
+    app["public_tables"] = [
+      {"table_name":"my_table1", "table_description":"fsdfdsfds", "keywords":['fsdfsdf', 'fdsfafasdf', 'fsdfsafs']},
+      {"table_name":"my_table2", "table_description":"table_description", "keywords":['fsdfsdf', 'fdsfafasdf', 'fsdfsafs']},
+      {"table_name":"my_table3", "table_description":"table_description", "keywords":['fsdfsdf', 'fdsfafasdf', 'fsdfsafs']},
+      {"table_name":"my_table4", "table_description":"fdsfsdf", "keywords":['fsdfsdf', 'fdsfafasdf', 'fsdfsafs']},
+      {"table_name":"my_table5", "table_description":"table_description", "keywords":['fsdfsdf', 'fdsfafasdf', 'fsdfsafs']},
+      {"table_name":"my_table6", "table_description":"table_description", "keywords":['fsdfsdf', 'fdsfafasdf', 'fsdfsafs']},
+    ];
+
+    app["myClientAppList"] = [
+      {"id":1, "name":"sunilkumar", "secret":"fdhfkewrdsjfkfufhsufkfhewifjk", "redirect":"http://sunilkumar.me/callback"},
+      {"id":2, "name":"thimmareddy", "secret":"fdhfkewrdsjfkfufhsufkfhewifjk", "redirect":"http://sunilkumar.me/callback"},
+      {"id":3, "name":"rukmanamma", "secret":"fdhfkewrdsjfkfufhsufkfhewifjk", "redirect":"http://sunilkumar.me/callback"},
+      {"id":4, "name":"manjunath", "secret":"fdhfkewrdsjfkfufhsufkfhewifjk", "redirect":"http://sunilkumar.me/callback"},
+    ]
+
+    app["files"] = [
+      {"id":1, "pivot_table":"table1", "pivot_field":"images", "pivot_id":2, "file_name":"avatar", "file_type":"image", "path":"avatar/fjjjf.png"},
+      {"id":2, "pivot_table":"table1", "pivot_field":"images", "pivot_id":2, "file_name":"avatar", "file_type":"image", "path":"avatar/fjjjf.png"},
+      {"id":3, "pivot_table":"table1", "pivot_field":"images", "pivot_id":2, "file_name":"avatar", "file_type":"image", "path":"avatar/fjjjf.png"},
+      {"id":4, "pivot_table":"table1", "pivot_field":"images", "pivot_id":2, "file_name":"avatar", "file_type":"image", "path":"avatar/fjjjf.png"},
+    ]
+
+    app["login_menu"] = [
+      {"name":"Welcome", "link":"/login/welcome", "icon":"glyphicon glyphicon-education", "submenu":[]},
+      {"name":"Docs", "link":"/login/docs", "icon":"glyphicon glyphicon-education", "submenu":[]},
+      {"name":"Signup", "link":"/login/signup-form", "icon":"glyphicon glyphicon-user", "submenu":[]},
+      {"name":"Login", "link":"/login/login-form", "icon":"glyphicon glyphicon-log-in", "submenu":[]},
+      {"name":"Admin Login", "link":"/login/admin-login", "icon":"glyphicon glyphicon-log-in", "submenu":[]},
+    ]
+
+    app["online_users"] = [
+      {"id":1, "user_id":1, "name":"sunilkumar", "status":"online"},
+      {"id":2, "user_id":2, "name":"manjunath", "status":"offline"},
+      {"id":3, "user_id":3, "name":"sunilkumar", "status":"online"},
+      {"id":4, "user_id":4, "name":"manjunath", "status":"offline"},
+      {"id":5, "user_id":5, "name":"sunilkumar", "status":"online"},
+      {"id":6, "user_id":6, "name":"manjunath", "status":"offline"},
+      {"id":7, "user_id":7, "name":"sunilkumar", "status":"online"},
+      {"id":8, "user_id":8, "name":"manjunath", "status":"offline"},
+      {"id":9, "user_id":9, "name":"sunilkumar", "status":"online"},
+      {"id":1, "user_id":1, "name":"sunilkumar", "status":"online"},
+      {"id":2, "user_id":2, "name":"manjunath", "status":"offline"},
+      {"id":3, "user_id":3, "name":"sunilkumar", "status":"online"},
+      {"id":4, "user_id":4, "name":"manjunath", "status":"offline"},
+      {"id":5, "user_id":5, "name":"sunilkumar", "status":"online"},
+      {"id":6, "user_id":6, "name":"manjunath", "status":"offline"},
+      {"id":7, "user_id":7, "name":"sunilkumar", "status":"online"},
+      {"id":8, "user_id":8, "name":"manjunath", "status":"offline"},
+      {"id":9, "user_id":9, "name":"sunilkumar", "status":"online"},
+      {"id":1, "user_id":1, "name":"sunilkumar", "status":"online"},
+      {"id":2, "user_id":2, "name":"manjunath", "status":"offline"},
+      {"id":3, "user_id":3, "name":"sunilkumar", "status":"online"},
+      {"id":4, "user_id":4, "name":"manjunath", "status":"offline"},
+      {"id":5, "user_id":5, "name":"sunilkumar", "status":"online"},
+      {"id":6, "user_id":6, "name":"manjunath", "status":"offline"},
+      {"id":7, "user_id":7, "name":"sunilkumar", "status":"online"},
+      {"id":8, "user_id":8, "name":"manjunath", "status":"offline"},
+      {"id":9, "user_id":9, "name":"sunilkumar", "status":"online"},
+      {"id":1, "user_id":1, "name":"sunilkumar", "status":"online"},
+      {"id":2, "user_id":2, "name":"manjunath", "status":"offline"},
+      {"id":3, "user_id":3, "name":"sunilkumar", "status":"online"},
+      {"id":4, "user_id":4, "name":"manjunath", "status":"offline"},
+      {"id":5, "user_id":5, "name":"sunilkumar", "status":"online"},
+      {"id":6, "user_id":6, "name":"manjunath", "status":"offline"},
+      {"id":7, "user_id":7, "name":"sunilkumar", "status":"online"},
+      {"id":8, "user_id":8, "name":"manjunath", "status":"offline"},
+      {"id":9, "user_id":9, "name":"sunilkumar", "status":"online"},
+      {"id":1, "user_id":1, "name":"sunilkumar", "status":"online"},
+      {"id":2, "user_id":2, "name":"manjunath", "status":"offline"},
+      {"id":3, "user_id":3, "name":"sunilkumar", "status":"online"},
+      {"id":4, "user_id":4, "name":"manjunath", "status":"offline"},
+      {"id":5, "user_id":5, "name":"sunilkumar", "status":"online"},
+      {"id":6, "user_id":6, "name":"manjunath", "status":"offline"},
+      {"id":7, "user_id":7, "name":"sunilkumar", "status":"online"},
+      {"id":8, "user_id":8, "name":"manjunath", "status":"offline"},
+      {"id":9, "user_id":9, "name":"sunilkumar", "status":"online"},
+    ]
+
+    app["chat_messages"] = [
+      {"id":1, "conversation_id":1, "from":"sunilkumar", "to":"manjunath", "message":"hi bro whats up!"},
+      {"id":2, "conversation_id":1, "from":"manjunath", "to":"sunilkumar", "message":"hi bro whats up! you"},
+      {"id":3, "conversation_id":1, "from":"sunilkumar", "to":"manjunath", "message":"I am fine How ARe you"},
+      {"id":4, "conversation_id":1, "from":"manjunath", "to":"sunilkumar", "message":"me too wana join movie"},
+      {"id":5, "conversation_id":1, "from":"sunilkumar", "to":"manjunath", "message":"where abouts"},
+      {"id":6, "conversation_id":1, "from":"manjunath", "to":"sunilkumar", "message":"gandinagar"},
+      {"id":7, "conversation_id":1, "from":"sunilkumar", "to":"manjunath", "message":"movie name"},
+      {"id":8, "conversation_id":1, "from":"manjunath", "to":"sunilkumar", "message":"mugulunage"},
+      {"id":9, "conversation_id":1, "from":"sunilkumar", "to":"manjunath", "message":"sure i will join you"},
+    ]
+
+    app["status_list"] = [
+      {"id":1, "name":"Online"},
+      {"id":1, "name":"Busy"},
+      {"id":1, "name":"Available"},
+      {"id":1, "name":"Un-Available"},
+      {"id":1, "name":"Only Impartent Chats"},
+    ]
+
+    app["table_group_name"] = [
+      {"id":1, "name":"openkart"},
+      {"id":1, "name":"blog"},
+      {"id":1, "name":"mobikart"},
+      {"id":1, "name":"portfolio"},
+      {"id":1, "name":"travels"},
+    ]
+
+    app['token'] = "";
+
+  </script>
 </body>
 </html>

@@ -1,0 +1,10 @@
+.error{
+	color:red;
+	font-size:10px;
+	text-align:right;
+	padding-right:10px;
+	visibility: hidden;
+	&::before { 
+	    content: "*";
+	}
+}

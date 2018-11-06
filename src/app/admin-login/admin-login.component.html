@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="row" style="height: 20vh">
+    
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h3>Admin Login</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input type="email" id="email" name="email" class="form-control" [(ngModel)]="myCustomer['email']" required />
+        </div>
+        <p *ngIf="error['email']">{{error['email']}}</p>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+          <input type="password" id="password" name="password" class="form-control" [(ngModel)]="myCustomer['password']" required />
+        </div>
+        <p *ngIf="error['password']">{{error['password']}}</p>
+      </div>
+      <div class="form-group">
+        <a [routerLink]="['/login/email']">Forgot Password</a>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" (click)="login()">Login</button>
+      </div>
+      <div class="checkbox">
+        <label>
+            <input type="checkbox" name="remember" [(ngModel)]="myCustomer['checked']"> Remember Me
+        </label>
+      </div>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>

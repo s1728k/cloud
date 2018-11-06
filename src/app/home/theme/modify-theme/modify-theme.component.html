@@ -1,0 +1,158 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12 text-center">
+			<h3>Modify Theme</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<form>
+				<div class="form-group">
+					<label for="table_name">Theme Name</label>
+					<input type="text" id="table_name" name="table_name" class="form-control" [(ngModel)]="selTheme['theme_name']" />
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<form>
+				<div class="form-group">
+					<label for="table_description">Theme Description</label>
+					<textarea id="table_description" rows="5" name="table_description" class="form-control" [(ngModel)]="selTheme['theme_description']"></textarea>
+				</div>
+				<div class="form-group">
+					<label for="keywords">Key Words</label>	
+					<input id="keywords" name="keywords" class="form-control" [(ngModel)]="selTheme['keywords']">
+					<p>* maximum of 5 comma separated keywords are accepted.</p>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="form-group">
+				<label for="del_fields">Enter The Comma Separated File Names To Be Deleted.</label>
+				<textarea id="del_fields" name="del_fields" class="form-control" [(ngModel)]="selTheme['delete_files']"></textarea>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12 table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFiSURBVGhD7Zk5TgNBEEUnAyJEynoqApBI2S4ACVsEV8DcBMQNSOAuQAa8HyB9jVrqmfbSLaue9JK2q6a+pbGtqS4IgqnYxVt8xbdK6tqaQbMUcY5f+NuImuUMR3GKqWYtqNkGsYPfmGrSgp+4jVnu0At/cIIHuL9gdc0n1Aw+0zVmeUEvesTa6IP0mTRjlnf0oiOsjWbwmTRjlg/0okOsjWbwmTRjllkFWcGLnjoroWqQdfQ+UmclRBAviiDofWQEQe8TQUqIIAkiiBf1g6zixgD30PtInaXe23cNnbkEuUR/fR7eoxNBvCiCTOFCgizNzT6U+B1JEEG8KIKg95ERBL1PBCkhgiSoGkT/AB566qyEqkFmSVGQpXmI3eJaQTsSn+kZs2jx6EVasqhRS4ueK8yi1VtLS9C+Wr1t4SBaXoYe4yhOsLX19OgQ/2h7eoP6Akgt8xehrq17YhODICii6/4AKeYLm3RM7hQAAAAASUVORK5CYII=" (click)="addNewFile()"></th>
+						<th>File Path</th>
+						<th>File Name</th>
+						<th>Database Name</th>
+						<th>Table Name</th>
+						<th>Query</th>
+						<th>Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let th_file of selTheme['files']; let i=index">
+						<td>{{i+1}}</td>
+						<td><input type="text" name="file-path" class="form-control" [(ngModel)]="selTheme['files'][i]['file_path']" /></td>
+						<td>{{selTheme['files'][i]['file_name']}}</td>
+						<td>
+							<div class="form-group">
+								<select id="db_name" name="db_name" class="form-control" (change)="onDatabaseSelect(selTheme['files'][i]['database_name'], i)"
+								 [(ngModel)]="selTheme['files'][i]['db_name']">
+									<option *ngFor="let free_database of free_databases" value="{{free_database['name']}}">{{free_database['name']}}</option>
+								</select>
+							</div>
+						</td>
+						<td>
+							<div class="form-group">
+								<select id="db_name" name="db_name" class="form-control" (change)="onTableSelect(selTheme['files'][i]['table_name'])"
+								 [(ngModel)]="selTheme['files'][i]['table_name']">
+									<option *ngFor="let my_table of my_table_list[i]" value="{{my_table['table_name']}}">{{my_table['table_name']}}</option>
+								</select>
+							</div>
+						</td>
+						<td><input type="text" name="file-path" class="form-control" [(ngModel)]="selTheme['files'][i]['query']" /></td>
+						<td><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEjSURBVGhD7Zk9agJRFIVnB1bBbWgR12FrbZAUgq21ja7AXkvLtJaWCWQBWYZ2gSTnwBMuj4fj6H0zYTwffM3lvJ8DU70phBDi4XmF+xKZ+ddM4Q/8LZEZZhvhBe4u+AavKXGWWa5J7XWWZ7qzhqkL5ZRnuqMid5ilyBCuapZnijJ6cJLZAczOHKa+Z0+XMDsqUkEVqULrixzhh/ETxhnObIZr4gxttMgBWjowznBm4Zo4Q1WkCioSZhYV8UBFwsyiIh6oSJhZVMQDFQkzi4p4oCJhZlERD1pf5AvaR7YZjDOc2QzXxBnaaBFPW1NkAbPDv0ipwz0dw+x04QmmLuAhn4ieYC2M4DdMXeQeuSf3rpVnuIXv0D663SL32MA+FEK4UxR/dgb0zufBmgUAAAAASUVORK5CYII=" (click)="removeField(i)"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<button class="btn btn-primary" (click)="updateTheme()">Update Theme</button>
+	</div>
+	<div class="row rheight">
+		<div class="col-md-12">
+			
+		</div>
+	</div>
+</div>
+
+<!-- Modal -->
+<div id="goToPage" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Goto Page</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+        	<input type="number" name="goto" value="1" class="form-control"> of Total 100 Pages
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default">Go</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="perPageCount" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Enter The Number Of Records Per Page</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+        	<input type="number" name="perpage" value="100" class="form-control"> of Total 1000 Records
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default">Save</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="upload" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Upload File</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+        	<input type="file" id="input-file" (change)="fileChange($event)" placeholder="Upload file" accept=".png,.jpg,.jpeg">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default">Upload</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+

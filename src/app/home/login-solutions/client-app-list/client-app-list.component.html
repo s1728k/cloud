@@ -1,0 +1,90 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<button class="btn btn-primary" (click)="showCreateForm()">Create New Client App</button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12 table-responsive">
+			<h3>Your Client App List</h3>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Sr. No.</th>
+						<th>Client_ID</th>
+						<th>App Name</th>
+                        <th>App Secret</th>
+                        <th>App Redirect</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let myApp of myClientAppList; let i=index;">
+						<td>{{i+1}}</td>
+						<td>{{myApp['id']}}</td>
+						<td>{{myApp['name']}}</td>
+						<td>{{myApp['secret']}}</td>
+						<td>{{myApp['redirect']}}</td>
+						<td><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHESURBVGhD7Zk3TsRQFEWnIoe1UJHjRqBgDSwDKGYRVIgkgsixomIdFMQWOLew9PX0bEzl95GPdApbH809sjQaZjotLS3ZMYxdvMNl3ciRUXzA78Q1zAovIruYqojC8DE9eIreeGvYGEVsoze6zHAxithBb+xvrmAIFLGL3sg6XmHjKGIP7bhP3MSv5F6Z69goijhAO0wRSyhWsSpG724j2Bh1Igo20J6TitBbdWP04iHaYYpYxBRF6b49GzpiAVMUFTKiD4/QDssu4hjtMI2dxxRFhYzox7KIOUxRVMiIATxBO+wD/2WErsNGeJ9iFTGLKaEjztAOe0cvQnH2bIiIc7TDvAhdh424QDtMETOYEjriEu2wN/QiFGfPhoi4RjvMi9B1yIhBLIuYxpSwEUN4g3bYK3oRirNns4rQdcgIfY15i3aYIqYwJXSEvoe1w17Qi1CcPdt4hP43rhuh65ARevF7tMMUMYkpWUZMYIoidN+e1d9nE6EnEzJC7KMdprHjmBI6QjyhHfeMY1igJxM6QnghsojRkwkfIcpCpGKyiBBVIZ4hI8RfQsJGiLohoSNEnZDwEWILHyvUz2XhI1paWlI6nR/Odd8N7x8zYgAAAABJRU5ErkJggg==" (click)="showUpdateForm(i)"></td>
+						<td><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEjSURBVGhD7Zk9agJRFIVnB1bBbWgR12FrbZAUgq21ja7AXkvLtJaWCWQBWYZ2gSTnwBMuj4fj6H0zYTwffM3lvJ8DU70phBDi4XmF+xKZ+ddM4Q/8LZEZZhvhBe4u+AavKXGWWa5J7XWWZ7qzhqkL5ZRnuqMid5ilyBCuapZnijJ6cJLZAczOHKa+Z0+XMDsqUkEVqULrixzhh/ETxhnObIZr4gxttMgBWjowznBm4Zo4Q1WkCioSZhYV8UBFwsyiIh6oSJhZVMQDFQkzi4p4oCJhZlERD1pf5AvaR7YZjDOc2QzXxBnaaBFPW1NkAbPDv0ipwz0dw+x04QmmLuAhn4ieYC2M4DdMXeQeuSf3rpVnuIXv0D663SL32MA+FEK4UxR/dgb0zufBmgUAAAAASUVORK5CYII=" (click)="deleteMyApp(myApp['id'])"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<!-- Modal Create New App -->
+<div id="createNewClient" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Create New App</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+        	<label for="app_name">App Name</label>
+        	<input type="text" id="app_name" name="app_name" class="form-control" [(ngModel)]="newClientApp['name']">
+        	<label for="redirect_url">App Redirect Url</label>
+        	<input type="text" id="redirect_url" name="redirect_url" class="form-control" [(ngModel)]="newClientApp['redirect']">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="createNewApp()">Create</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal update App -->
+<div id="updateClientApp" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Update My App</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+        	<label for="app_name">App Name</label>
+        	<input type="text" id="app_name" name="app_name" class="form-control" [(ngModel)]="newClientApp['name']">
+        	<label for="redirect_url">App Redirect Url</label>
+        	<input type="text" id="redirect_url" name="redirect_url" class="form-control" [(ngModel)]="newClientApp['redirect']">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="updateMyApp(myClientAppList[i]['id'])">Update</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>

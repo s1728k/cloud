@@ -1,0 +1,19 @@
+th, td{
+	min-width:200px;
+	&:nth-child(1){
+		min-width:25px;
+	}
+	&:nth-child(2){
+		min-width:25px;
+	}
+	&:nth-child(5){
+		min-width:25px;
+	}
+	img{
+		width:25px;
+		height:25px;
+	}
+}
+.rheight{
+	height:100px;
+}

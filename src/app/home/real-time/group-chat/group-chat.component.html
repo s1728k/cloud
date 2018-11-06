@@ -1,0 +1,84 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-2 members">
+			<div class="form-group">
+				<input type="text" name="search_member" class="form-control" placeholder="Search Members" [(ngModel)]="fsl" />
+			</div>
+			<div class="form-group">
+				<label style="color:orange">{{online_users_count}} users online<button>Show Only Online</button></label>
+			</div>
+			<div class="members-list">
+				<div class="media" *ngFor="let online_user of online_users">
+				  <div class="media-left">
+				    <img src="http://via.placeholder.com/100x100" class="media-object">
+				  </div>
+				  <div class="media-body">
+				    <h4 class="media-heading" [style.color]="online_user['status']==='online'?'orange':'black'" (click)="getConversation(online_user['id'])" >{{online_user['name']}}</h4>
+				  </div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-10">
+			<div class="row">
+				<div class="col-md-6">
+					<h3>Angular Friends</h3>
+				</div>
+				<div class="col-md-2">
+					<div class="dropdown">
+					  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Group Members
+					  <span class="caret"></span></button>
+					  <ul class="dropdown-menu">
+					    <li>
+					    	<div class="form-group">
+								<input type="text" name="search_member" class="form-control" placeholder="Search Members" [(ngModel)]="fsl" />
+							</div>
+					    </li>
+					    <li><a>Join This Group</a></li>
+					    <li *ngFor="let current_chat_mate of current_chat_mates"><a>{{current_chat_mate}} <span class="badge">1</span></a></li>
+					  </ul>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<button class="btn btn-primary" (click)="closeThisChat()">Close This Chat</button>
+				</div>
+				<div class="col-md-2">
+					<div class="dropdown">
+					  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{myStatus}}
+					  <span class="caret"></span></button>
+					  <ul class="dropdown-menu">
+					    <li *ngFor="let status of statusList" (click)="statusUpdate(status['name'])"><a>{{status['name']}}</a></li>
+					  </ul>
+					</div>
+				</div>
+			</div>
+			<div class="row chat-area">
+				<div class="col-md-12">
+					<ng-container *ngFor="let message of my_conversation">
+						<ng-container *ngIf="message['from']==='sunilkumar'">
+							<div class="message-to">
+							  <p><strong>Sunil Kumar T : </strong> {{message['message']}}<span>11:02</span></p>
+							</div>
+						</ng-container>
+						<ng-container *ngIf="message['from']==='manjunath'">
+							<div class="message-from">
+							  <p><strong>Manju T : </strong> {{message['message']}}<span>11:05</span></p>
+							</div>
+						</ng-container>
+					</ng-container>
+				</div>
+			</div>
+			<div class="row chat-type-area">
+				<div class="col-md-10">
+					<div class="form-group">
+						<input type="text" name="message" class="form-control" [(ngModel)]="message" (keyup.enter)="sendMessage()" />
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="form-group">
+						<button class="btn btn-primary" (click)="sendMessage()">Send</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

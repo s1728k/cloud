@@ -1,0 +1,41 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12 text-center">
+			<h3>Sign Up</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
+			<!-- <div class="form-group">
+				<label for="nickname">App Nick Name</label>
+				<input id="nickname" name="nickname" class="form-control" [(ngModel)]="newCustomer['nickname']" (change)="nickNameCheck()" required />
+				<p class="error" [style.visibility]="error['nickname']">{{error['nickname_ev']}}</p>
+			</div> -->
+			<div class="form-group">
+				<label for="name">Name</label>
+				<input id="name" name="name" class="form-control" [(ngModel)]="newCustomer['name']" required />
+				<p class="error" [style.visibility]="error['name']">{{error['name_ev']}}</p>
+			</div>
+			<div class="form-group">
+				<label for="email">Email</label>
+				<input type="email" id="email" name="email" class="form-control" [(ngModel)]="newCustomer['email']" (change)="emailCheck()" required />
+				<p class="error" [style.visibility]="error['email']">{{error['email_ev']}}</p>
+			</div>
+			<div class="form-group">
+				<label for="password">Password</label>
+				<input type="password" id="password" name="password" class="form-control" [(ngModel)]="newCustomer['password']" required />
+				<p class="error" [style.visibility]="error['password']">{{error['password_ev']}}</p>
+			</div>
+			<div class="form-group">
+				<label for="confirm_password">Confirm Password</label>
+				<input type="password" id="confirm_password" name="confirm_password" class="form-control" [(ngModel)]="newCustomer['confirm_password']" (change)="confirmPasswordCheck()" required />
+				<p class="error" [style.visibility]="error['confirm_password']">{{error['confirm_password_ev']}}</p>
+			</div>
+			<div class="form-group">
+				<button class="btn btn-primary" (click)="signup()">Sign Up</button>
+			</div>
+		</div>
+		<div class="col-md-4"></div>
+	</div>
+</div>

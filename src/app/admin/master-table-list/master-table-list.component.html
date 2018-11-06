@@ -1,0 +1,50 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-4">
+			<h3>Master Table List</h3>
+		</div>
+		<div class="col-md-8"></div>
+	</div>
+	<div class="row">
+		<div class="col-md-12 table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFiSURBVGhD7Zk5TgNBEEUnAyJEynoqApBI2S4ACVsEV8DcBMQNSOAuQAa8HyB9jVrqmfbSLaue9JK2q6a+pbGtqS4IgqnYxVt8xbdK6tqaQbMUcY5f+NuImuUMR3GKqWYtqNkGsYPfmGrSgp+4jVnu0At/cIIHuL9gdc0n1Aw+0zVmeUEvesTa6IP0mTRjlnf0oiOsjWbwmTRjlg/0okOsjWbwmTRjllkFWcGLnjoroWqQdfQ+UmclRBAviiDofWQEQe8TQUqIIAkiiBf1g6zixgD30PtInaXe23cNnbkEuUR/fR7eoxNBvCiCTOFCgizNzT6U+B1JEEG8KIKg95ERBL1PBCkhgiSoGkT/AB566qyEqkFmSVGQpXmI3eJaQTsSn+kZs2jx6EVasqhRS4ueK8yi1VtLS9C+Wr1t4SBaXoYe4yhOsLX19OgQ/2h7eoP6Akgt8xehrq17YhODICii6/4AKeYLm3RM7hQAAAAASUVORK5CYII=" (click)="addNewField()"></th>
+						<th width="25px">Table Name</th>
+						<th width="25px">App Name</th>
+						<th width="25px">DB Name</th>
+						<th width="25px">Description</th>
+						<th width="25px">Keywords</th>
+						<th width="25px">Private</th>
+						<th width="25px">Field Indexes</th>
+						<th width="25px">Fillable</th>
+						<th width="25px">Hidden</th>
+						<th width="25px">Created By</th>
+						<th width="25px">CRUD</th>
+					</tr>
+				</thead>
+				<tbody>
+		            <tr *ngFor="let row_item of my_crud_table; let i=index">
+		              <ng-container *ngIf="editMode[i]">
+		                <td>1</td>
+		                <td *ngFor="let item of my_crud_table_fields">
+		                  <div class="form-group">
+		                    <input type="{{input_types[item['data_type']]}}" name="{{item['field_name']}}" class="form-control" [(ngModel)]="row_item[item['field_name']]" />
+		                  </div>
+		                </td>
+		                <td width="25px"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADQSURBVGhD7dPBCQIxFIThiBdPtmALHjyojdieIGIllmABFiBYgKATl4ElbNjN5pD3YH4YyJ7Cx5KglFJKKaVKO2EXbPn/clpEfLAvdsNcYvoIzh1mCBF3xdxAhLCSEFYSwkpC1LbF1t2xqqaIA/bG7lgNpiniiEUEL52LaYpYYU8svbwUY+Jh77H+H+GmYkwg2FyMKQQrxZhEsKkY0wg2hnGBYDnMA3ODYDlMOtMINoZxgWA5jCsESzEuEWyHvbAz5hbBNtiiOyqllFJKqRDCD9jOxrvAX5HLAAAAAElFTkSuQmCC" (click)="updateField(i);editMode[i]=!editMode[i]"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEjSURBVGhD7Zk9agJRFIVnB1bBbWgR12FrbZAUgq21ja7AXkvLtJaWCWQBWYZ2gSTnwBMuj4fj6H0zYTwffM3lvJ8DU70phBDi4XmF+xKZ+ddM4Q/8LZEZZhvhBe4u+AavKXGWWa5J7XWWZ7qzhqkL5ZRnuqMid5ilyBCuapZnijJ6cJLZAczOHKa+Z0+XMDsqUkEVqULrixzhh/ETxhnObIZr4gxttMgBWjowznBm4Zo4Q1WkCioSZhYV8UBFwsyiIh6oSJhZVMQDFQkzi4p4oCJhZlERD1pf5AvaR7YZjDOc2QzXxBnaaBFPW1NkAbPDv0ipwz0dw+x04QmmLuAhn4ieYC2M4DdMXeQeuSf3rpVnuIXv0D663SL32MA+FEK4UxR/dgb0zufBmgUAAAAASUVORK5CYII=" (click)="removeField(i)"></td>
+		              </ng-container>
+		              <ng-container *ngIf="!editMode[i]">
+		                  <td>1</td>
+		                  <td *ngFor="let item of my_crud_table_fields">
+		                    {{row_item[item['field_name']]}}
+		                  </td>
+		                  <td width="25px"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHESURBVGhD7Zk3TsRQFEWnIoe1UJHjRqBgDSwDKGYRVIgkgsixomIdFMQWOLew9PX0bEzl95GPdApbH809sjQaZjotLS3ZMYxdvMNl3ciRUXzA78Q1zAovIruYqojC8DE9eIreeGvYGEVsoze6zHAxithBb+xvrmAIFLGL3sg6XmHjKGIP7bhP3MSv5F6Z69goijhAO0wRSyhWsSpG724j2Bh1Igo20J6TitBbdWP04iHaYYpYxBRF6b49GzpiAVMUFTKiD4/QDssu4hjtMI2dxxRFhYzox7KIOUxRVMiIATxBO+wD/2WErsNGeJ9iFTGLKaEjztAOe0cvQnH2bIiIc7TDvAhdh424QDtMETOYEjriEu2wN/QiFGfPhoi4RjvMi9B1yIhBLIuYxpSwEUN4g3bYK3oRirNns4rQdcgIfY15i3aYIqYwJXSEvoe1w17Qi1CcPdt4hP43rhuh65ARevF7tMMUMYkpWUZMYIoidN+e1d9nE6EnEzJC7KMdprHjmBI6QjyhHfeMY1igJxM6QnghsojRkwkfIcpCpGKyiBBVIZ4hI8RfQsJGiLohoSNEnZDwEWILHyvUz2XhI1paWlI6nR/Odd8N7x8zYgAAAABJRU5ErkJggg=="  (click)="editMode[i]=!editMode[i]"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEjSURBVGhD7Zk9agJRFIVnB1bBbWgR12FrbZAUgq21ja7AXkvLtJaWCWQBWYZ2gSTnwBMuj4fj6H0zYTwffM3lvJ8DU70phBDi4XmF+xKZ+ddM4Q/8LZEZZhvhBe4u+AavKXGWWa5J7XWWZ7qzhqkL5ZRnuqMid5ilyBCuapZnijJ6cJLZAczOHKa+Z0+XMDsqUkEVqULrixzhh/ETxhnObIZr4gxttMgBWjowznBm4Zo4Q1WkCioSZhYV8UBFwsyiIh6oSJhZVMQDFQkzi4p4oCJhZlERD1pf5AvaR7YZjDOc2QzXxBnaaBFPW1NkAbPDv0ipwz0dw+x04QmmLuAhn4ieYC2M4DdMXeQeuSf3rpVnuIXv0D663SL32MA+FEK4UxR/dgb0zufBmgUAAAAASUVORK5CYII=" (click)="removeField(i)"></td>
+		              </ng-container>
+		            </tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

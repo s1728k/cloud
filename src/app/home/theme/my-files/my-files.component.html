@@ -1,0 +1,126 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-6">
+			<h3>My Files</h3>
+		</div>
+		<div class="col-md-6">
+			<ul class="pager">
+			  <li><a href="#">Previous</a></li>
+			  <li><a href="#">Next</a></li>
+			  <li><a data-toggle="modal" data-target="#goToPage">Goto Page</a></li>
+			  <li><a data-toggle="modal" data-target="#perPageCount">Showing 100 Records</a></li>
+			  <li><a data-toggle="modal" data-target="#upload">Upload File</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12 table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th width="25px">Sr.</th>
+						<th width="100px">Id</th>
+						<th>Pivot Table</th>
+						<th>Pivot Field</th>
+						<th width="100px">Pivot Id</th>
+						<th>File Name*</th>
+						<th>File Type*</th>
+						<th>File Path</th>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="text" name="file_id" class="form-control" [(ngModel)]="sParam['id']" /></td>
+						<td><input type="text" name="pivot_table" class="form-control" [(ngModel)]="sParam['pivot_table']" /></td>
+						<td><input type="text" name="pivot_field" class="form-control" [(ngModel)]="sParam['pivot_field']" /></td>
+						<td><input type="text" name="pivot_id" class="form-control" [(ngModel)]="sParam['pivot_id']" /></td>
+						<td><input type="text" name="file_name" class="form-control" [(ngModel)]="sParam['file_name']" /></td>
+						<td><input type="text" name="file_type" class="form-control" [(ngModel)]="sParam['file_type']" /></td>
+						<td><input type="text" name="path" class="form-control" [(ngModel)]="sParam['path']" /></td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let my_file of my_files; let i=index">
+						<td>{{i+1}}</td>
+						<td>{{my_file['id']}}</td>
+						<td>{{my_file['pivot_table']}}</td>
+						<td>{{my_file['pivot_field']}}</td>
+						<td>{{my_file['pivot_id']}}</td>
+						<td>{{my_file['file_name']}}</td>
+						<td>{{my_file['file_type']}}</td>
+						<td>{{my_file['path']}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<!-- Modal -->
+<div id="goToPage" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Goto Page</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+        	<input type="number" name="goto" value="1" class="form-control"> of Total 100 Pages
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default">Go</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="perPageCount" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Enter The Number Of Records Per Page</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+        	<input type="number" name="perpage" value="100" class="form-control"> of Total 1000 Records
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default">Save</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="upload" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Upload File</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+        	<input type="file" id="input-file" (change)="fileChange($event)" placeholder="Upload file" accept=".png,.jpg,.jpeg">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default">Upload</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
